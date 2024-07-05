@@ -3,10 +3,13 @@ import bigstar from '../assets/star-outline.svg';
 import { Button, Card, Col, Container, Image, Row } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { fetchOneDevice } from '../http/deviceApi';
+import { useDispatch } from 'react-redux';
+import { setBasket } from '../features/basketSlice/basketSlice';
 
 const DevicePage = () => {
   const [device, setDevice] = useState({ info: [] });
   const { id } = useParams();
+  const dispatch = useDispatch();
   useEffect(() => {
     fetchOneDevice(id).then((data) => setDevice(data));
   }, []);
@@ -39,7 +42,9 @@ const DevicePage = () => {
             style={{ width: 300, height: 300, fontSize: 32, border: '5px solid lightgray' }}
           >
             <h3>{device.price} $</h3>
-            <Button variant={'outline-dark'}>Add to cart</Button>
+            <Button variant={'outline-dark'} onClick={() => dispatch(setBasket([device.name, device.price, device.id]))}>
+              Add to cart
+            </Button>
           </Card>
         </Col>
       </Row>

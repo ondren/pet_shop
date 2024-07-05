@@ -9,14 +9,10 @@ import { setBrands, setDevices, setTotalCount, setTypes } from '../features/devi
 import Pages from '../components/Pages/Pages';
 
 const Shop = () => {
-  const types = useSelector((state) => state.device._types);
-  const brands = useSelector((state) => state.device._brands);
-  const devices = useSelector((state) => state.device._devices);
   const page = useSelector((state) => state.device._page);
   const selectedTypes = useSelector((state) => state.device._selectedTypes);
   const selectedBrands = useSelector((state) => state.device._selectedBrands);
   const dispatch = useDispatch();
-
   useEffect(() => {
     fetchTypes().then((data) => dispatch(setTypes(data)));
 
@@ -26,7 +22,6 @@ const Shop = () => {
       dispatch(setDevices(data.rows));
       dispatch(setTotalCount(data.count));
     });
-    console.log(brands, devices, types);
   }, []);
 
   useEffect(() => {

@@ -2,7 +2,7 @@ import { BrowserRouter } from 'react-router-dom';
 import AppRouter from './components/AppRouter';
 import NavBar from './components/NavBar/NavBar';
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { check } from './http/userApi';
 import { changeStatus } from './features/userState/userStateSlice';
 

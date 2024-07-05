@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Card, Row } from 'react-bootstrap';
-import { selectBrad, selectType } from '../../features/deviceSlice/deviceSlice';
+import { selectBrad } from '../../features/deviceSlice/deviceSlice';
 
 const BrandBar = () => {
   const dispatch = useDispatch();

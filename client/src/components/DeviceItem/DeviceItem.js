@@ -1,21 +1,35 @@
 import React from 'react';
-import { Card, Col, Image } from 'react-bootstrap';
+import { Button, Card, Col, Image } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { DEVICE_ROUTE } from '../../utils/consts';
+import { useDispatch } from 'react-redux';
+import { setBasket } from '../../features/basketSlice/basketSlice';
 
 const DeviceItem = ({ device }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   return (
-    <Col md={3} className="mt-3" onClick={() => navigate(DEVICE_ROUTE + '/' + device.id)}>
-      <Card style={{ width: 150, cursor: 'pointer' }} border={'light'}>
-        <Image width={150} height={150} src={process.env.REACT_APP_API_URL + device.img} />
+    <Col md={3} className="mt-3">
+      <Card style={{ width: 150 }} border={'light'}>
+        <Image
+          style={{ cursor: 'pointer' }}
+          onClick={() => navigate(DEVICE_ROUTE + '/' + device.id)}
+          width={150}
+          height={150}
+          src={process.env.REACT_APP_API_URL + device.img}
+        />
         <div className="text-black-50 d-flex justify-content-between align-items-center">
           <div className=" mt-1 d-flex align-items-center">
             <div>{device.name}</div>
           </div>
         </div>
         <div>{device.rating} *</div>
-        <div>{device.price} $</div>
+        <div className="d-flex justify-content-between">
+          <div>{device.price} $</div>
+          <Button variant="primary" onClick={() => dispatch(setBasket([device.name, device.price, device.id]))}>
+            +
+          </Button>
+        </div>
       </Card>
     </Col>
   );
