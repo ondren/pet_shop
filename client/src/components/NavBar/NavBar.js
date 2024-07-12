@@ -12,7 +12,6 @@ const NavBar = () => {
   const basketCount = useSelector((state) => state.basket._basketCount);
   const basketData = useSelector((state) => state.basket._basket);
   const dispatch = useDispatch();
-  console.log(basketData);
 
   const logOut = () => {
     dispatch(setData({}));

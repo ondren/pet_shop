@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Form, FormControl, Modal, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectBrad, selectType, setBrands, setDevices, setTypes } from '../../features/deviceSlice/deviceSlice';
-import { createDevice, fetchBrands, fetchDevices, fetchTypes } from '../../http/deviceApi';
+import { createDevice, fetchBrands, fetchDevices, fetchTypes } from '../../http/deviceApi.ts';
 
 const CreateDevice = ({ show, onHide }) => {
   const types = useSelector((state) => state.device._types);
@@ -31,7 +31,6 @@ const CreateDevice = ({ show, onHide }) => {
   };
 
   const addDevice = () => {
-    console.log(info);
     const formData = new FormData();
     formData.append('name', name || 'имя не указано');
     formData.append('price', `${price}`);
