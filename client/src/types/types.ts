@@ -1,3 +1,5 @@
+//http folder types
+
 export interface UserPostResponse {
   token: string;
 }

@@ -2,10 +2,11 @@ import React from 'react';
 import { Button, Card, Col, Image } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { DEVICE_ROUTE } from '../../utils/consts';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setBasket } from '../../features/basketSlice/basketSlice';
 
 const DeviceItem = ({ device }) => {
+  const isAuth = useSelector((state) => state.user._user._isAuth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   return (
@@ -26,9 +27,15 @@ const DeviceItem = ({ device }) => {
         <div>{device.rating} *</div>
         <div className="d-flex justify-content-between">
           <div>{device.price} $</div>
-          <Button variant="primary" onClick={() => dispatch(setBasket([device.name, device.price, device.id]))}>
-            +
-          </Button>
+          {isAuth ? (
+            <Button variant="primary" onClick={() => dispatch(setBasket([device.name, device.price, device.id]))}>
+              +
+            </Button>
+          ) : (
+            <Button variant="primary" onClick={() => alert('Авторизируйтесь или создайте аккаунт')}>
+              +
+            </Button>
+          )}
         </div>
       </Card>
     </Col>

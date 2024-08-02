@@ -2,12 +2,15 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { clearBasket, decrementBasket, setBasket } from '../features/basketSlice/basketSlice';
+
 const Basket = () => {
   const basketData = useSelector((state) => state.basket._basket);
   const dispatch = useDispatch();
 
   return Object.keys(basketData).length === 0 ? (
-    <h1 className="d-flex justify-content-center align-items-center">Корзина пуста</h1>
+    <div>
+      <h1 className="d-flex justify-content-center align-items-center">Корзина пуста</h1>
+    </div>
   ) : (
     <div>
       <ListGroup>

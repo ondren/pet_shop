@@ -10,7 +10,6 @@ const NavBar = () => {
   const navigate = useNavigate();
   const currentUser = useSelector((state) => state.user._user._isAuth);
   const basketCount = useSelector((state) => state.basket._basketCount);
-  const basketData = useSelector((state) => state.basket._basket);
   const dispatch = useDispatch();
 
   const logOut = () => {
